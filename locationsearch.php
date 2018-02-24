@@ -150,3 +150,40 @@ function locationsearch_civicrm_navigationMenu(&$menu) {
   ));
   _locationsearch_civix_navigationMenu($menu);
 } // */
+
+/**
+ * Implements hook_civicrm_entityTypes().
+ */
+function locationsearch_civicrm_entityTypes(&$entityTypes) {
+  $entityTypes['CRM_Contact_DAO_Contact']['fields_callback'][]
+    = function ($class, &$fields) {
+
+      // Extend search builder with proximity search
+      if (CRM_Utils_GeocodeProvider::getUsableClassName()) {
+        $fields['prox_distance'] = array(
+          'title' => ts('Proximity Distance'),
+          'name' => 'prox_distance',
+          'type'  => 2,
+          'export' => TRUE,
+        );
+
+        $fields['prox_distance_unit'] = array(
+          'title' => ts('Proximity Distance Unit'),
+          'name' => 'prox_distance_unit',
+          'type'  => 2,
+          'export' => TRUE,
+        );
+      }
+    };
+}
+
+/**
+ * Implements hook_civicrm_buildForm().
+ */
+function locationsearch_civicrm_buildForm($formName, &$form) {
+  if ('CRM_Contact_Form_Search_Builder' == $formName) {
+    // Enqueue table.js
+    CRM_Core_Resources::singleton()
+      ->addScriptFile('com.lema.locationsearch', 'templates/CRM/Contact/Form/Search/table.js', 1, 'page-footer');
+  }
+}
