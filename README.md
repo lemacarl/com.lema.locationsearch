@@ -28,7 +28,7 @@ Navigate to www.yoursitehere.com/civicrm/admin/setting/mapping?reset=1 and enabl
 
 To use the search builder go to www.yoursitehere.com/civicrm/contact/search/builder?reset=1 
 
-Select `Contacts` then `Proximity Distance Unit` and select either `miles` or `kilometres`. Note that `miles` is the default setting.
+Select `Contacts` then `Proximity Distance Unit` and select either `miles` or `kilometres`. Note that `kilometres` is the default setting.
 
 Then add `Another search field` and select `Contacts` then `Proximity Distance`. Select an operator and then enter the range.
 
