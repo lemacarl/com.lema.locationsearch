@@ -159,7 +159,7 @@ function locationsearch_civicrm_entityTypes(&$entityTypes) {
     = function ($class, &$fields) {
 
       // Extend search builder with proximity search
-      if (CRM_Utils_GeocodeProvider::getUsableClassName()) {
+      if ( class_exists('CRM_Utils_GeocodeProvider') && CRM_Utils_GeocodeProvider::getUsableClassName()) {
         $fields['prox_distance'] = array(
           'title' => ts('Proximity Distance'),
           'name' => 'prox_distance',
