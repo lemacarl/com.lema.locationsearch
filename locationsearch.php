@@ -157,9 +157,9 @@ function locationsearch_civicrm_navigationMenu(&$menu) {
 function locationsearch_civicrm_entityTypes(&$entityTypes) {
   $entityTypes['CRM_Contact_DAO_Contact']['fields_callback'][]
     = function ($class, &$fields) {
-
+      $config = CRM_Core_Config::singleton();
       // Extend search builder with proximity search
-      if ( class_exists('CRM_Utils_GeocodeProvider') && CRM_Utils_GeocodeProvider::getUsableClassName()) {
+      if (!empty($config->geocodeMethod)) {
         $fields['prox_distance'] = array(
           'title' => ts('Proximity Distance'),
           'name' => 'prox_distance',
